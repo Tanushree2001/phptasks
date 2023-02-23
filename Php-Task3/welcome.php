@@ -41,24 +41,24 @@
             $new->ShowImage(); // calling function ShowImage
             $new->FullName(); //calling function Fullname
         ?>
-        <table border="1">
-    <tr>
-        <th>Subject</th>
-        <th>Marks</th>
-    </tr>
+        <table border="1"> <!--table created for task3-->
+        <tr> <!--First row of table-->
+            <th>Subject</th> <!--First column of first row-->
+            <th>Marks</th> <!--Second column of first row-->
+        </tr>
+        <?php  //php logic started
+        foreach($marks_tmp as $mark) //for every element in array
+        {
+            $value = explode("|",$mark); //break every string element into array element whenever | present
+        ?>
+        <tr>  <!--for each element a seperate row created-->
+            <td><?php echo $value[0]; ?></td> <!--putting array[0] in 1st column-->
+            <td><?php echo $value[1]; ?></td> <!--putting array[1] in 2nd column-->
+        </tr>
     <?php
-    
-    foreach($marks_tmp as $markss) {
-        $value = explode("|",$markss);
+        }
+    }   
     ?>
-    <tr>
-        <td><?php echo $value[0]; ?></td>
-        <td><?php echo $value[1]; ?></td>
-    </tr>
-  <?php
-    }
-}
-  ?>
         
     </body>
 </html>
