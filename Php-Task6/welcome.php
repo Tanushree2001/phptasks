@@ -74,6 +74,30 @@
                     echo "Not valid";
                 }
             }
+
+            // Making function for creating two documents  
+            public function MakeTwoDocs()
+            {
+                $location = "$this->email_id.docx";   //for creating file inside
+                $fp = fopen($location, 'a');
+                fwrite($fp, $this->first_name);
+                fwrite($fp, $this->last_name);
+                fwrite($fp, $this->email_id);
+                fclose($fp);
+
+                $file= "$this->email_id";
+                if ($this->email_id = "") { // file does not exist
+                    die('file not found');
+                } else { //for creating file at server
+                    header('Content-type: application/octet-stream');
+                    header("Content-Type: " . mime_content_type($file));
+                    header("Content-Disposition: attachment; filename=" . $file);
+                    while (ob_get_level()) {
+                    ob_end_clean();
+                    }
+                    readfile($file);
+                }
+            }
         }
         
         if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -89,26 +113,7 @@
             $new->FullName(); //calling function Fullname
             $new->ShowMobileNumber(); //calling function ShowMobileNumber
             $new->CheckEmailId(); //calling function CheckEmailId
-            $loc = "$emailid.docx";
-            $fp = fopen($loc, 'a');
-            fwrite($fp, $firstname);
-            fwrite($fp, $lastname);
-            fwrite($fp, $emailid);
-            fclose($fp);
-
-            $filename = "$emailid.docx";
-            $file = $filename;
-            if ($emailid = "") { // file does not exist
-                die('file not found');
-            } else {
-                header('Content-type: application/octet-stream');
-                header("Content-Type: " . mime_content_type($file));
-                header("Content-Disposition: attachment; filename=" . $filename);
-                while (ob_get_level()) {
-                ob_end_clean();
-                }
-                readfile($file);
-            }
+            $new->MakeTwoDocs(); //calling function MakeTwoDocs
         ?>
         <table border="1"> <!--table created for task3-->
         <tr> <!--First row of table-->
