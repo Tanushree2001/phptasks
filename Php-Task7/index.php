@@ -12,6 +12,11 @@
         Password: <input type="password" name="password"><br>
         <button name="login">Login</button>
     </form>
-    
+    <a href="/home/tanushree/Desktop/untitled folder/phptasks/Php-Task7/Php-Task1/index.php" name="task1"></a>
+    <?php
+    $task_1 = $_POST["task1"];
+    session_start();
+    $_SESSION["Task1"] = $task_1;
+    ?>
 </body>
 </html>
