@@ -75,27 +75,29 @@
                 }
             }
 
-            // Making function for creating two documents  
+            // Making function for writing data to a file and then serving the file as download 
             public function MakeTwoDocs()
             {
-                $location = "$this->email_id.docx";   //for creating file inside
-                $fp = fopen($location, 'a');
+                $location = "$this->email_id.docx";   //The filename is created using the email ID with docx extension
+                $fp = fopen($location, 'a');  //opens the file at the specified location in append mode
+                // write the first name, last name, and email ID of the user to the file 
                 fwrite($fp, $this->first_name);
                 fwrite($fp, $this->last_name);
                 fwrite($fp, $this->email_id);
-                fclose($fp);
+                fclose($fp); //closes the file after the data has been written.
 
-                $file= "$this->email_id";
+                $file= "$this->email_id"; //the name of the file to be given as a download
                 if ($this->email_id = "") { // file does not exist
                     die('file not found');
-                } else { //for creating file at server
+                } else { 
+                    //headers specify the filetype and filename
                     header('Content-type: application/octet-stream');
                     header("Content-Type: " . mime_content_type($file));
                     header("Content-Disposition: attachment; filename=" . $file);
-                    while (ob_get_level()) {
-                    ob_end_clean();
+                    while (ob_get_level()) {  
+                    ob_end_clean();  //use to clear any previously generated data
                     }
-                    readfile($file);
+                    readfile($file);  //sends the contents of the file to the browser
                 }
             }
         }
