@@ -15,7 +15,6 @@
 session_start();
 if(isset($_POST["logout"])){
     session_unset();  //unset the value
-    session_destroy();  // destroy the value
 }
 ?>
 
