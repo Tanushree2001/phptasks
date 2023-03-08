@@ -21,7 +21,6 @@
   if($_SERVER["REQUEST_METHOD"]=="POST"){
   $user_name = $_POST["username"];  //storing value 
   $pass_word = $_POST["password"];   
-  $_SESSION['user_name']= $user_name;  //session variable
   } 
 }
 ?>    
