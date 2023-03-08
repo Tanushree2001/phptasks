@@ -1,0 +1,22 @@
+*,body,html{  /*Initializing*/
+    margin: 0px;
+    box-sizing: border-box;
+    padding: 0px;
+}
+form{ /*form structure*/
+    border: 1px solid black;
+    padding: 50px;
+    width: 33%;
+    background-color: pink;
+}
+form input{ /*form inputs css*/
+    padding: 10px 25px;
+    margin: 15px;
+    background-color: white;
+}
+.upload{ /*css for files*/
+    padding: 10px 25px;
+}
+.submit:hover{ /*Hovering on submit button*/
+    background-color: yellow;
+}
